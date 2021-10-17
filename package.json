@@ -1,0 +1,16 @@
+{
+  "name": "your-honest-game",
+  "version": "0.0.1",
+  "homepage": ".",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "choom": "file:./../wombat/packages/choom",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
