@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@csstools/normalize.css": "^12.0.0",
+    "@reduxjs/toolkit": "^1.6.2",
     "array-shuffle": "^3.0.0",
     "axios": "^0.23.0",
     "choom": "file:./../wombat/packages/choom",
     "next": "^11.1.2",
     "next-connect": "^0.10.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5"
   },
   "devDependencies": {
     "dotenv-load": "^2.0.0",
