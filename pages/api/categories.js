@@ -4,7 +4,7 @@ import shuffle from "array-shuffle";
 
 const catLimit = process.env.NEXT_PUBLIC_YHG_CATEGORY_LIMIT;
 
-const handler = nc({ attachParams: true }).get(async (req, res) => {
+const handler = nc().get(async (req, res) => {
   const selectedIds = shuffle(
     process.env.NEXT_PUBLIC_YHG_CATEGORY_IDS.split(" ")
   ).slice(0, catLimit);
@@ -20,7 +20,7 @@ const handler = nc({ attachParams: true }).get(async (req, res) => {
 
     res.json(data);
   } catch (err) {
-    throw new Error("API request failed", err);
+    throw new Error("API <categories> request failed", err);
   }
 });
 

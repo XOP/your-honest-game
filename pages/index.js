@@ -7,11 +7,11 @@ import Space from 'choom/lib/components/space/Space';
 
 export default function Intro () {
 
-  const testApiCall = () => {
-    fetch('/api/categories')
-      .then((res) => res.json())
-      .then(data => console.log(data));
-  }
+  // const testApiCall = () => {
+  //   fetch('/api/categories')
+  //     .then((res) => res.json())
+  //     .then(data => console.log(data));
+  // }
 
   return (
     <div>
@@ -19,9 +19,9 @@ export default function Intro () {
 
         <Space size='2'/>
 
-        <Hold>
+        {/* <Hold>
           <Button onClick={testApiCall}>Call</Button>
-        </Hold>
+        </Hold> */}
     </div>
   )
 }
