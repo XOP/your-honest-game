@@ -18,7 +18,7 @@ const handler = nc().get(async (req, res) => {
 
     const data = await Promise.all(dataPending);
 
-    res.json(data);
+    res.json(transformData(data));
   } catch (err) {
     throw new Error("API <categories> request failed", err);
   }
