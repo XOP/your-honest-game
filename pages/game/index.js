@@ -3,12 +3,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "choom/lib/components/card/Card";
-import Button from "choom/lib/components/button/Button";
-import Flow from "choom/lib/components/layout/Flow";
 import Stack from "choom/lib/components/layout/Stack";
 import Contain from "choom/lib/components/layout/Contain";
 
 import { Category } from "../../src/components/compositions/category/Category";
+import { Clue } from "../../src/components/features/clue/Clue";
 
 import { mockClues } from "../../src/redux/utils";
 
@@ -21,11 +20,9 @@ import {
 
 import {
   cluePhaseSelector,
-  setCluePhaseActive,
   setGamePhaseRound,
+  setCluePhaseActive
 } from "../../src/redux/slices/gameSlice";
-import { Actions } from "../../src/components/compositions/actions/Actions";
-import { Clue } from "../../src/components/features/clue/Clue";
 
 export default function Game({ categories: mockCategories }) {
   const categories = useSelector(cluesSelector);
@@ -47,7 +44,7 @@ export default function Game({ categories: mockCategories }) {
 
   return (
     <Contain space="2" dir="x">
-      <Clue clue={active?.clue} cluePhase={cluePhase} />
+      {active && <Clue clue={active.clue} cluePhase={cluePhase} />}
       <Card padding="1">
         {!!categories.length && (
           <Stack as="section" dir="y" space="0.5">
@@ -64,7 +61,7 @@ export default function Game({ categories: mockCategories }) {
 export function getServerSideProps() {
   return {
     props: {
-      categories: mockClues
+      categories: mockClues,
     },
   };
 }

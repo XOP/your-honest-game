@@ -49,17 +49,22 @@ export const cluesSlice = createSlice({
   reducers: {
     activateClue: (state, action) => {
       const { id, value } = action.payload;
-      const category = state.categories.find(cat => cat.id === id);
+      const category = state.categories.find((cat) => cat.id === id);
       const clue = category.clues[value];
 
       state.active = {
         categoryId: id,
-        clue
-      }
+        clue: {
+          ...clue,
+          value
+        },
+      };
 
       clue.activated = true;
+    },
 
-
+    resetClue: (state) => {
+      state.active = null;
     },
   },
 
@@ -85,7 +90,11 @@ export const cluesSlice = createSlice({
   },
 });
 
-export const { activateClue } = cluesSlice.actions;
+// ========================================================
+// Actions / Selectors
+// ========================================================
+
+export const { activateClue, resetClue } = cluesSlice.actions;
 
 export const statusSelector = (state) => state.clues.status;
 export const cluesSelector = (state) => state.clues.categories;

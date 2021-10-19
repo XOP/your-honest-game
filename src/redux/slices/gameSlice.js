@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { CLUE_PHASE, GAME_PHASE } from "../utils";
 
-
 // ========================================================
 // Setup
 // ========================================================
@@ -16,7 +15,6 @@ const initialState = {
   pass: 0,
 };
 
-
 // ========================================================
 // Slice
 // ========================================================
@@ -26,35 +24,48 @@ export const gameSlice = createSlice({
   initialState,
 
   reducers: {
-    resetGamePhase: (state) => {
-      state.game_phase = GAME_PHASE.init;
-    },
     setGamePhaseRound: (state) => {
       state.game_phase = GAME_PHASE.round;
     },
     setGamePhaseEnd: (state) => {
       state.game_phase = GAME_PHASE.end;
     },
-
-    resetCluePhase: (state) => {
-      state.clue_phase = CLUE_PHASE.init;
+    setGamePhaseInit: (state) => {
+      state.game_phase = GAME_PHASE.init;
     },
+
     setCluePhaseActive: (state) => {
       state.clue_phase = CLUE_PHASE.active;
     },
     setCluePhaseAnswer: (state) => {
       state.clue_phase = CLUE_PHASE.answer;
-    }
-  }
+    },
+    setCluePhaseInit: (state) => {
+      state.clue_phase = CLUE_PHASE.init;
+    },
+  
+    incrementScore: (state, action) => {
+      state.score += Number(action.payload.value);
+    },
+    decrementScore: (state, action) => {
+      state.score -= Number(action.payload.value);
+    },
+  },
 });
 
+// ========================================================
+// Actions / Selectors
+// ========================================================
+
 export const {
-  resetGamePhase,
   setGamePhaseRound,
   setGamePhaseEnd,
-  resetCluePhase,
+  setGamePhaseInit,
   setCluePhaseActive,
-  setCluePhaseAnswer
+  setCluePhaseAnswer,
+  setCluePhaseInit,
+  incrementScore,
+  decrementScore,
 } = gameSlice.actions;
 
 export const scoreSelector = (state) => state.game.score;

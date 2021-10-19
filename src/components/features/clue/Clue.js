@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Card from "choom/lib/components/card/Card";
 import Contain from "choom/lib/components/layout/Contain";
@@ -8,10 +8,39 @@ import Heading from "choom/lib/components/heading/Heading";
 
 import { Actions } from "../../compositions/actions/Actions";
 
+import {
+  setCluePhaseInit,
+  setCluePhaseAnswer,
+  incrementScore,
+  decrementScore,
+} from "../../../redux/slices/gameSlice";
+import { resetClue } from "../../../redux/slices/cluesSlice";
+
 import { CLUE_PHASE } from "../../../redux/utils";
 
-const Clue = ({ clue, cluePhase }) => {  
+const Clue = ({ clue, cluePhase }) => {
   if (!clue) return null;
+
+  const dispatch = useDispatch();
+
+  const handleClaimCorrect = () => {
+    dispatch(setCluePhaseAnswer());
+  };
+
+  const handlePass = () => {
+    dispatch(setCluePhaseInit());
+    dispatch(resetClue());
+  };
+
+  const handleConfirmCorrect = () => {
+    dispatch(incrementScore({ value: clue.value }));
+    dispatch(resetClue());
+  };
+
+  const handleConfirmWrong = () => {
+    dispatch(decrementScore({ value: clue.value }));
+    dispatch(resetClue());
+  };
 
   let content = null;
 
@@ -24,8 +53,8 @@ const Clue = ({ clue, cluePhase }) => {
         <Actions
           primary="I know"
           secondary="I pass"
-          onPrimary={() => null}
-          onSecondary={() => null}
+          onPrimary={handleClaimCorrect}
+          onSecondary={handlePass}
         />
       </div>
     );
@@ -35,15 +64,17 @@ const Clue = ({ clue, cluePhase }) => {
     content = (
       <div>
         <Contain space="1" dir="xy">
-          <Heading as='div' level='5' colorInherit>Correct Answer:</Heading>
+          <Heading as="div" level="5" colorInherit>
+            Correct Answer:
+          </Heading>
           <Divider />
           {clue.answer}
         </Contain>
         <Actions
           primary="Correct!"
           secondary="Hmm..."
-          onPrimary={() => null}
-          onSecondary={() => null}
+          onPrimary={handleConfirmCorrect}
+          onSecondary={handleConfirmWrong}
         />
       </div>
     );
