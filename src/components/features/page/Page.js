@@ -1,18 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Support from "choom/lib/components/layout/Support";
-import Panel from "choom/lib/components/panel/Panel";
+import FlexUnit from "choom/lib/components/layout/FlexUnit";
 
-import { Navigation } from "../navigation/Navigation";
+import { Toolbar } from "../toolbar/Toolbar";
+
+import { gamePhaseSelector } from "../../../redux/slices/gameSlice";
+import { GAME_PHASE } from "../../../redux/utils";
 
 const Page = ({ children }) => {
+  const gamePhase = useSelector(gamePhaseSelector);
+  const isInit = gamePhase === GAME_PHASE.init;
+
   return (
     <Support as="main">
-      {children}
+      <Support>{children}</Support>
 
-      <Panel placement="bottom" padding='1'>
-        <Navigation />
-      </Panel>
+      {!isInit && (
+        <FlexUnit basis="15vh" grow="0">
+          <Toolbar />
+        </FlexUnit>
+      )}
     </Support>
   );
 };

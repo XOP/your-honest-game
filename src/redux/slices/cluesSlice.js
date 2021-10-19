@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
 import { STATUS } from "../utils";
-
 
 // ========================================================
 // Setup
@@ -11,9 +11,8 @@ import { STATUS } from "../utils";
 const initialState = {
   status: STATUS.init,
   categories: [],
-  active: null
+  active: null,
 };
-
 
 // ========================================================
 // Async
@@ -23,7 +22,7 @@ export const fetchClues = createAsyncThunk(
   "clues/fetch",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/api/categories');
+      const response = await axios.get("/api/categories");
       const data = await response.data;
 
       return data;
@@ -48,7 +47,20 @@ export const cluesSlice = createSlice({
   initialState,
 
   reducers: {
+    activateClue: (state, action) => {
+      const { id, value } = action.payload;
+      const category = state.categories.find(cat => cat.id === id);
+      const clue = category.clues[value];
 
+      state.active = {
+        categoryId: id,
+        clue
+      }
+
+      clue.activated = true;
+
+
+    },
   },
 
   extraReducers: {
@@ -73,9 +85,10 @@ export const cluesSlice = createSlice({
   },
 });
 
-// export const { foo } = cluesSlice.actions;
+export const { activateClue } = cluesSlice.actions;
 
 export const statusSelector = (state) => state.clues.status;
-export const cluesSelector = (state) => state.clues.status;
+export const cluesSelector = (state) => state.clues.categories;
+export const activeClueSelector = (state) => state.clues.active;
 
 export default cluesSlice.reducer;
