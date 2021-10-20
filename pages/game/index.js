@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "choom/lib/components/card/Card";
@@ -21,7 +20,7 @@ import {
 import {
   cluePhaseSelector,
   setGamePhaseRound,
-  setCluePhaseActive
+  setCluePhaseActive,
 } from "../../src/redux/slices/gameSlice";
 
 export default function Game({ categories: mockCategories }) {
@@ -61,7 +60,7 @@ export default function Game({ categories: mockCategories }) {
 export function getServerSideProps() {
   return {
     props: {
-      categories: mockClues,
+      categories: process.env.NODE_ENV === "development" ? mockClues : [],
     },
   };
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 import Button from "choom/lib/components/button/Button";
 import Card from "choom/lib/components/card/Card";
@@ -14,26 +14,37 @@ import Panel from "choom/lib/components/panel/Panel";
 
 import { RefreshCcw, Settings } from "react-feather";
 
-import { scoreSelector } from "../../../redux/slices/gameSlice";
+import {
+  scoreSelector,
+  setGamePhaseInit,
+} from "../../../redux/slices/gameSlice";
+
 import { routes } from "../../../routes";
 
 const Toolbar = () => {
   const score = useSelector(scoreSelector);
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleRestart = () => {
+    router.push(routes.START);
+    dispatch(setGamePhaseInit());
+  };
+
+  const handleSettings = () => {
+    router.push(routes.SETTINGS);
+  };
 
   return (
     <Panel placement="bottom" position="fixed" padding="1">
       <Flex dir="row" fluid align="center" justify="center">
         <FlexUnit basis="30%">
           <Flow as="nav" space="1">
-            <Link href={routes.MAIN}>
-              <a>
-                <Button size="small" isIcon>
-                  <Icon size="inherit">
-                    <RefreshCcw />
-                  </Icon>
-                </Button>
-              </a>
-            </Link>
+            <Button size="small" isIcon onClick={handleRestart}>
+              <Icon size="inherit">
+                <RefreshCcw />
+              </Icon>
+            </Button>
           </Flow>
         </FlexUnit>
         <FlexUnit basis="40%">
@@ -47,15 +58,11 @@ const Toolbar = () => {
         </FlexUnit>
         <FlexUnit basis="30%">
           <Flow as="nav" space="1">
-            <Link href={routes.SETTINGS}>
-              <a>
-                <Button size="small" isIcon>
-                  <Icon size="inherit">
-                    <Settings />
-                  </Icon>
-                </Button>
-              </a>
-            </Link>
+            <Button size="small" isIcon onClick={handleSettings}>
+              <Icon size="inherit">
+                <Settings />
+              </Icon>
+            </Button>
           </Flow>
         </FlexUnit>
       </Flex>

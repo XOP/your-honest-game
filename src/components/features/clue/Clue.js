@@ -13,8 +13,13 @@ import {
   setCluePhaseAnswer,
   incrementScore,
   decrementScore,
+  setGamePhaseEnd,
 } from "../../../redux/slices/gameSlice";
-import { resetClue } from "../../../redux/slices/cluesSlice";
+
+import {
+  resetClue,
+  isLastClueSelector,
+} from "../../../redux/slices/cluesSlice";
 
 import { CLUE_PHASE } from "../../../redux/utils";
 
@@ -22,6 +27,13 @@ const Clue = ({ clue, cluePhase }) => {
   if (!clue) return null;
 
   const dispatch = useDispatch();
+  const isLastClue = useSelector(isLastClueSelector);
+
+  const gamePhaseOnLastClue = () => {
+    if (isLastClue) {
+      dispatch(setGamePhaseEnd());
+    }
+  }
 
   const handleClaimCorrect = () => {
     dispatch(setCluePhaseAnswer());
@@ -30,16 +42,22 @@ const Clue = ({ clue, cluePhase }) => {
   const handlePass = () => {
     dispatch(setCluePhaseInit());
     dispatch(resetClue());
+
+    gamePhaseOnLastClue();
   };
 
   const handleConfirmCorrect = () => {
     dispatch(incrementScore({ value: clue.value }));
     dispatch(resetClue());
+
+    gamePhaseOnLastClue();
   };
 
   const handleConfirmWrong = () => {
     dispatch(decrementScore({ value: clue.value }));
     dispatch(resetClue());
+
+    gamePhaseOnLastClue();
   };
 
   let content = null;

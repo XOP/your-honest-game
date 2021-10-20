@@ -99,5 +99,22 @@ export const { activateClue, resetClue } = cluesSlice.actions;
 export const statusSelector = (state) => state.clues.status;
 export const cluesSelector = (state) => state.clues.categories;
 export const activeClueSelector = (state) => state.clues.active;
+export const isLastClueSelector = (state) => {
+  let leftItems = 0;
+
+  state.clues.categories.forEach(cat => {
+    for (let val in cat.clues) {
+      if (!cat.clues[val].activated){
+        leftItems++;
+      }
+
+      if (leftItems > 0) {
+        break;
+      }
+    }
+  });
+
+  return leftItems === 0;
+}
 
 export default cluesSlice.reducer;

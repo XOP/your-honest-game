@@ -1,5 +1,6 @@
 export const routes = {
-  MAIN: '/',
-  GAME: '/game',
-  SETTINGS: '/settings'
+  START: "/",
+  GAME: "/game",
+  END: "/game/end",
+  SETTINGS: "/settings",
 };

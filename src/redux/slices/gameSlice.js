@@ -32,6 +32,10 @@ export const gameSlice = createSlice({
     },
     setGamePhaseInit: (state) => {
       state.game_phase = GAME_PHASE.init;
+      state.score = 0;
+      state.correct = 0;
+      state.incorrect = 0;
+      state.pass = 0;
     },
 
     setCluePhaseActive: (state) => {
@@ -43,7 +47,7 @@ export const gameSlice = createSlice({
     setCluePhaseInit: (state) => {
       state.clue_phase = CLUE_PHASE.init;
     },
-  
+
     incrementScore: (state, action) => {
       state.score += Number(action.payload.value);
     },
@@ -68,8 +72,11 @@ export const {
   decrementScore,
 } = gameSlice.actions;
 
-export const scoreSelector = (state) => state.game.score;
 export const gamePhaseSelector = (state) => state.game.game_phase;
 export const cluePhaseSelector = (state) => state.game.clue_phase;
+export const scoreSelector = (state) => state.game.score;
+export const correctSelector = (state) => state.game.correct;
+export const incorrectSelector = (state) => state.game.incorrect;
+export const passSelector = (state) => state.game.pass;
 
 export default gameSlice.reducer;
