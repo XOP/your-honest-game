@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "@csstools/normalize.css": "^12.0.0",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "dotenv-load": "^2.0.0",
+    "jest": "^27.3.1",
     "next-env": "^1.1.1"
   }
 }

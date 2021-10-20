@@ -2,7 +2,7 @@ import nc from "next-connect";
 import axios from "axios";
 import shuffle from "array-shuffle";
 
-import { mockData } from '../../src/redux/utils';
+import { mockData } from "../../src/redux/utils";
 
 const catLimit = process.env.NEXT_PUBLIC_YHG_CATEGORY_LIMIT;
 
@@ -12,17 +12,19 @@ const handler = nc().get(async (req, res) => {
   ).slice(0, catLimit);
 
   try {
-  //   const dataPending = selectedIds.map((id) =>
-  //     axios
-  //       .get(process.env.NEXT_PUBLIC_YHG_CATEGORY_EP, { params: { id } })
-  //       .then((res) => res.data)
-  //   );
+    //   const dataPending = selectedIds.map((id) =>
+    //     axios
+    //       .get(process.env.NEXT_PUBLIC_YHG_CATEGORY_EP, { params: { id } })
+    //       .then((res) => res.data)
+    //   );
 
-  //   const data = await Promise.all(dataPending);
+    //   const data = await Promise.all(dataPending);
 
-    const data = await (new Promise(resolve => setTimeout(() => {
-      resolve(mockData);
-    }, 500)));
+    const data = await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(mockData);
+      }, 500)
+    );
 
     res.json(transformData(data));
   } catch (err) {
@@ -32,7 +34,7 @@ const handler = nc().get(async (req, res) => {
 
 /**
  * randomFromArray
- * @param {Array} arr 
+ * @param {Array} arr
  * @returns {*}
  */
 function randomFromArray(arr) {
@@ -53,6 +55,7 @@ function randomFromArray(arr) {
         id: int
         question: string
         answer: string
+        value: int
       }
     ]
     clues_count: int
@@ -75,7 +78,7 @@ function randomFromArray(arr) {
 
 /**
  * transformData
- * @param {Array} data 
+ * @param {Array} data
  * @returns {Object}
  */
 function transformData(data) {
@@ -103,7 +106,7 @@ function transformData(data) {
       acc[cur.value] = {
         question: cur.question,
         answer: cur.answer,
-        activated: false
+        activated: false,
       };
 
       return acc;
@@ -117,4 +120,5 @@ function transformData(data) {
   });
 }
 
+export { transformData };
 export default handler;
