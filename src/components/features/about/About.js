@@ -19,10 +19,10 @@ const About = () => {
           </small>
         </FlexUnit>
         <a href='https://jservice.io/' className={styles.link}>
-          <Icon size='small'><Database /></Icon>
+          <Icon size='small' className={styles.icon}><Database /></Icon>
         </a>
         <a href='https://github.com/XOP/your-honest-game' className={styles.link}>
-          <Icon size='small'><GitHub /></Icon>
+          <Icon size='small' className={styles.icon}><GitHub /></Icon>
         </a>
       </Flow>
     </Panel>

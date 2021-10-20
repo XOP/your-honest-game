@@ -9,6 +9,10 @@
   color: var(--color-light-temp);
 }
 
+.icon {
+  vertical-align: text-bottom;
+}
+
 .text {
   display: block;
 

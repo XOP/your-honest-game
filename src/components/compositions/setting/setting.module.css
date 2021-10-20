@@ -1,0 +1,9 @@
+.root {
+  min-width: 20rem;
+
+  color: var(--color-light-temp);
+}
+
+.toggle {
+  min-height: calc(var(--line-height-s) * var(--font-size-xl));
+}

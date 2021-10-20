@@ -1291,7 +1291,7 @@ chokidar@3.5.1:
   optionalDependencies:
     fsevents "~2.3.1"
 
-"choom@file:../wombat/packages/choom":
+"choom@file:./../wombat/packages/choom":
   version "0.0.3"
   dependencies:
     "@emotion/react" "^11.0.0"
