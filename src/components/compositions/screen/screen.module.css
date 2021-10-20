@@ -1,0 +1,10 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  min-height: 19rem;
+  margin: 0 auto;
+  max-width: 640px;
+}

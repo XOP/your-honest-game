@@ -18,7 +18,7 @@ const Page = ({ children }) => {
       <Support>{children}</Support>
 
       {!isInit && (
-        <FlexUnit basis="15vh" grow="0">
+        <FlexUnit basis="20vh" grow="0">
           <Toolbar />
         </FlexUnit>
       )}

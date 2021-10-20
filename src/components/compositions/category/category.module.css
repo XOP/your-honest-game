@@ -1,0 +1,21 @@
+.root {
+  width: 100%;
+}
+
+.titlewrap.titlewrap {
+  min-width: 0;
+  width: 20ex;
+}
+
+.title {
+  max-height: calc(2em * var(--line-height-s));
+  line-height: var(--line-height-s);
+  width: 100%;
+  overflow: hidden;
+}
+
+.item {
+  box-sizing: content-box;
+  min-width: 3.5ex;
+  font-weight: bold;
+}

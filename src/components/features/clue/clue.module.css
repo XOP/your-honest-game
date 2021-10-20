@@ -1,0 +1,12 @@
+.root {
+  position: absolute;
+  top: var(--space-one);
+  left: var(--space-one);
+  right: var(--space-one);
+  bottom: var(--space-one);
+
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}

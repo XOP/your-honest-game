@@ -21,6 +21,8 @@ import {
 
 import { routes } from "../../../routes";
 
+import styles from "./toolbar.module.css";
+
 const Toolbar = () => {
   const score = useSelector(scoreSelector);
   const router = useRouter();
@@ -40,7 +42,7 @@ const Toolbar = () => {
       <Flex dir="row" fluid align="center" justify="center">
         <FlexUnit basis="30%">
           <Flow as="nav" space="1">
-            <Button size="small" isIcon onClick={handleRestart}>
+            <Button isIcon onClick={handleRestart}>
               <Icon size="inherit">
                 <RefreshCcw />
               </Icon>
@@ -48,17 +50,15 @@ const Toolbar = () => {
           </Flow>
         </FlexUnit>
         <FlexUnit basis="40%">
-          <Card padding="1">
-            <Contain dir="x" space="1">
-              <Heading level="2" as="div" colorInherit>
-                {score}
-              </Heading>
-            </Contain>
+          <Card padding="1" className={styles.score}>
+            <Heading align='center' level="2" as="div" colorInherit className={styles.value}>
+              {score}
+            </Heading>
           </Card>
         </FlexUnit>
         <FlexUnit basis="30%">
           <Flow as="nav" space="1">
-            <Button size="small" isIcon onClick={handleSettings}>
+            <Button isIcon onClick={handleSettings}>
               <Icon size="inherit">
                 <Settings />
               </Icon>

@@ -4,6 +4,8 @@ import Card from "choom/lib/components/card/Card";
 import Flow from "choom/lib/components/layout/Flow";
 import FlexUnit from "choom/lib/components/layout/FlexUnit";
 
+import styles from "./category.module.css";
+
 const Category = ({ id, title = "", clues = {}, onItemClick = () => null }) => {
   let _clues = Object.entries(clues);
 
@@ -16,28 +18,37 @@ const Category = ({ id, title = "", clues = {}, onItemClick = () => null }) => {
   const _title = title.toUpperCase();
 
   return (
-    <div>
-      <Flow space="0.5">
-        <FlexUnit>{_title}</FlexUnit>
-        {_clues.map(([value, { activated }]) => {
-          const onClick = activated
-            ? undefined
-            : () => onItemClick({ id, value });
+    <Flow space="0.5" className={styles.root}>
+      <FlexUnit className={styles.titlewrap}>
+        <div className={styles.title} title={_title}>
+           {_title}
+        </div>
+      </FlexUnit>
+      {_clues.map(([value, { activated }]) => {
+        const onClick = activated
+          ? undefined
+          : () => onItemClick({ id, value });
 
-          const _value = activated ? (
-            <span style={{ userSelect: "none", opacity: "0" }}>000</span>
-          ) : (
-            value
-          );
+        const _value = activated ? (
+          <span style={{ userSelect: "none", opacity: "0" }}>000</span>
+        ) : (
+          value
+        );
 
-          return (
-            <Card key={value} padding="0.5" onClick={onClick}>
-              {_value}
-            </Card>
-          );
-        })}
-      </Flow>
-    </div>
+        return (
+          <Card
+            align="center"
+            key={value}
+            padding="0.5"
+            onClick={onClick}
+            className={styles.item}
+            title={`${_title}: ${value}`}
+          >
+            {_value}
+          </Card>
+        );
+      })}
+    </Flow>
   );
 };
 

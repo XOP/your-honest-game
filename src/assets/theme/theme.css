@@ -19,16 +19,16 @@
   --font-size-4xl: 4.2rem;
 
   --line-height-s: 1.15;
-  --line-height-n: 1.6;
+  --line-height-n: 1.5;
 
   --font-family-main: "Blinker";
   --font-family-fallback: -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif;
   --font-family: var(--font-family-main), var(--font-family-fallback);
 
-  --radius-light: 0.125rem;
-  --radius-regular: 0.25rem;
-  --radius-heavy: 0.5rem;
+  --radius-light: 0.075rem;
+  --radius-regular: 0.125rem;
+  --radius-heavy: 0.25rem;
 
   --border-size-light: 1px;
   --border-size-regular: 2px;

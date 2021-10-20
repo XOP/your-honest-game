@@ -4,7 +4,7 @@ import Flow from "choom/lib/components/layout/Flow";
 import Button from "choom/lib/components/button/Button";
 
 const Actions = ({
-  size = "small",
+  size = "regular",
   primary,
   secondary,
   onPrimary,

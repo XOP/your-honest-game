@@ -5,6 +5,7 @@ import Card from "choom/lib/components/card/Card";
 import Stack from "choom/lib/components/layout/Stack";
 import Contain from "choom/lib/components/layout/Contain";
 
+import { Screen } from "../../src/components/compositions/screen/Screen";
 import { Category } from "../../src/components/compositions/category/Category";
 import { Clue } from "../../src/components/features/clue/Clue";
 
@@ -42,9 +43,8 @@ export default function Game({ categories: mockCategories }) {
   }, []);
 
   return (
-    <Contain space="2" dir="x">
-      {active && <Clue clue={active.clue} cluePhase={cluePhase} />}
-      <Card padding="1">
+    <Contain space="1" dir="x">
+      <Screen>
         {!!categories.length && (
           <Stack as="section" dir="y" space="0.5">
             {categories.map((cat) => (
@@ -52,7 +52,8 @@ export default function Game({ categories: mockCategories }) {
             ))}
           </Stack>
         )}
-      </Card>
+        {active && <Clue clue={active.clue} cluePhase={cluePhase} />}
+      </Screen>
     </Contain>
   );
 }

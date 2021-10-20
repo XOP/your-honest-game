@@ -11,9 +11,15 @@ const Result = ({ children: title, value, iconSvg }) => {
     </Icon>
   );
 
+  const _value = (
+    <strong>
+      {value}
+    </strong>
+  )
+
   return (
     <div>
-      <Media start={icon} end={value}>
+      <Media start={icon} end={_value}>
         <Heading level="5" as="div" colorInherit align="left">
           {title}
         </Heading>

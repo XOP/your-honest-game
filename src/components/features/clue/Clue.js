@@ -23,6 +23,8 @@ import {
 
 import { CLUE_PHASE } from "../../../redux/utils";
 
+import styles from "./clue.module.css";
+
 const Clue = ({ clue, cluePhase }) => {
   if (!clue) return null;
 
@@ -33,7 +35,7 @@ const Clue = ({ clue, cluePhase }) => {
     if (isLastClue) {
       dispatch(setGamePhaseEnd());
     }
-  }
+  };
 
   const handleClaimCorrect = () => {
     dispatch(setCluePhaseAnswer());
@@ -99,7 +101,7 @@ const Clue = ({ clue, cluePhase }) => {
   }
 
   return (
-    <Card align="center" padding="1">
+    <Card align="center" padding="1" className={styles.root}>
       {content}
     </Card>
   );
