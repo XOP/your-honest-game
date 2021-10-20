@@ -6,7 +6,6 @@ import { Settings, Star, Loader } from "react-feather";
 
 import Button from "choom/lib/components/button/Button";
 import Heading from "choom/lib/components/heading/Heading";
-import Hold from "choom/lib/components/layout/Hold";
 import Flow from "choom/lib/components/layout/Flow";
 import Icon from "choom/lib/components/icon/Icon";
 
@@ -15,6 +14,7 @@ import { setGamePhaseRound } from "../src/redux/slices/gameSlice";
 
 import { STATUS } from "../src/redux/utils";
 import { routes } from "../src/routes";
+import Flex from "choom/lib/components/layout/Flex";
 
 export default function Intro() {
   const dispatch = useDispatch();
@@ -40,36 +40,27 @@ export default function Intro() {
   }, [status]);
 
   return (
-    <div>
+    <Flex space="2" fluid dir="column">
       <Heading level="2" as="h1">
         Your honest game
       </Heading>
 
-      <br />
+      <Flow>
+        <Button
+          onClick={handleGameStart}
+          size="big"
+          isIcon
+          disabled={isLoading}
+        >
+          <Icon size="inherit">{isLoading ? <Loader /> : <Star />}</Icon>
+        </Button>
 
-      <Hold>
-        <Flow>
-          <Button
-            onClick={handleGameStart}
-            size="big"
-            isIcon
-            disabled={isLoading}
-          >
-            <Icon size="inherit">{isLoading ? <Loader /> : <Star />}</Icon>
-          </Button>
-
-          <Button
-            size="big"
-            isIcon
-            disabled={isLoading}
-            onClick={handleSettings}
-          >
-            <Icon size="inherit">
-              <Settings />
-            </Icon>
-          </Button>
-        </Flow>
-      </Hold>
-    </div>
+        <Button size="big" isIcon disabled={isLoading} onClick={handleSettings}>
+          <Icon size="inherit">
+            <Settings />
+          </Icon>
+        </Button>
+      </Flow>
+    </Flex>
   );
 }

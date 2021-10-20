@@ -1,0 +1,17 @@
+.root.root {
+  text-align: center;
+  background: var(--color-dark-temp);
+  color: var(--color-light-temp);
+  font-size: var(--font-size-m);
+}
+
+.link {
+  color: var(--color-light-temp);
+}
+
+.text {
+  display: block;
+
+  text-align: left;
+  font-size: var(--font-size-m);
+}

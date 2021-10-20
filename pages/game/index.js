@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Card from "choom/lib/components/card/Card";
 import Stack from "choom/lib/components/layout/Stack";
 import Contain from "choom/lib/components/layout/Contain";
 

@@ -19,3 +19,7 @@
   min-width: 3.5ex;
   font-weight: bold;
 }
+
+.item__activated {
+  opacity: 0.4;
+}

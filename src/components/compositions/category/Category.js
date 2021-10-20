@@ -41,7 +41,7 @@ const Category = ({ id, title = "", clues = {}, onItemClick = () => null }) => {
             key={value}
             padding="0.5"
             onClick={onClick}
-            className={styles.item}
+            className={activated ? `${styles.item} ${styles.item__activated}` : styles.item}
             title={`${_title}: ${value}`}
           >
             {_value}

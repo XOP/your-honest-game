@@ -5,6 +5,7 @@ import Support from "choom/lib/components/layout/Support";
 import FlexUnit from "choom/lib/components/layout/FlexUnit";
 
 import { Toolbar } from "../toolbar/Toolbar";
+import { About } from "../about/About";
 
 import { routes } from "../../../routes";
 
@@ -17,10 +18,12 @@ const Page = ({ children }) => {
       <Support>{children}</Support>
 
       {!isStart && (
-        <FlexUnit basis="20vh" grow="0">
+        <FlexUnit basis="12vh" grow="0">
           <Toolbar />
         </FlexUnit>
       )}
+
+      <About />
     </Support>
   );
 };
