@@ -5,6 +5,7 @@ import { DollarSign, CheckCircle, Slash, FastForward } from "react-feather";
 
 import Stack from "choom/lib/components/layout/Stack";
 import Contain from "choom/lib/components/layout/Contain";
+import Divider from "choom/lib/components/divider/Divider";
 import Heading from "choom/lib/components/heading/Heading";
 
 import { Result } from "../../src/components/compositions/result/Result";
@@ -35,12 +36,14 @@ export default function Game() {
   return (
     <Contain space="2" dir="x">
       <Screen>
-        <Flex fluid dir='column'>
-          <Heading level="4" as="h1" colorInherit mb="1">
+        <Flex fluid dir='column' space='0'>
+          <Heading level="4" as="h1" colorInherit>
             <small>This was...</small>
             <br />
             your honest game!
           </Heading>
+
+          <Divider mt='1.5' mb='1.5' />
 
           <Stack as="section" dir="y" space="0.75">
             <Result value={score} iconSvg={<DollarSign />}>

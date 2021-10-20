@@ -14,6 +14,9 @@ import {
   incrementScore,
   decrementScore,
   setGamePhaseEnd,
+  incrementCorrect,
+  incrementIncorrect,
+  incrementPass,
 } from "../../../redux/slices/gameSlice";
 
 import {
@@ -44,12 +47,14 @@ const Clue = ({ clue, cluePhase }) => {
   const handlePass = () => {
     dispatch(setCluePhaseInit());
     dispatch(resetClue());
+    dispatch(incrementPass());
 
     gamePhaseOnLastClue();
   };
 
   const handleConfirmCorrect = () => {
     dispatch(incrementScore({ value: clue.value }));
+    dispatch(incrementCorrect());
     dispatch(resetClue());
 
     gamePhaseOnLastClue();
@@ -57,6 +62,7 @@ const Clue = ({ clue, cluePhase }) => {
 
   const handleConfirmWrong = () => {
     dispatch(decrementScore({ value: clue.value }));
+    dispatch(incrementIncorrect());
     dispatch(resetClue());
 
     gamePhaseOnLastClue();

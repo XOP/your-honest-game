@@ -54,6 +54,16 @@ export const gameSlice = createSlice({
     decrementScore: (state, action) => {
       state.score -= Number(action.payload.value);
     },
+
+    incrementCorrect: (state) => {
+      state.correct += 1;
+    },
+    incrementIncorrect: (state) => {
+      state.incorrect += 1;
+    },
+    incrementPass: (state) => {
+      state.pass += 1;
+    }
   },
 });
 
@@ -70,6 +80,9 @@ export const {
   setCluePhaseInit,
   incrementScore,
   decrementScore,
+  incrementCorrect,
+  incrementIncorrect,
+  incrementPass
 } = gameSlice.actions;
 
 export const gamePhaseSelector = (state) => state.game.game_phase;
