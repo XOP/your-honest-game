@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "choom/lib/components/card/Card";
+import Chip from "choom/lib/components/chip/Chip";
 import Contain from "choom/lib/components/layout/Contain";
 import Divider from "choom/lib/components/divider/Divider";
 import Heading from "choom/lib/components/heading/Heading";
+import Space from "choom/lib/components/space/Space";
 
 import { Actions } from "../../compositions/actions/Actions";
 
@@ -28,11 +30,38 @@ import { CLUE_PHASE } from "../../../redux/utils";
 
 import styles from "./clue.module.css";
 
+const delay = 5 * 1000;
+
 const Clue = ({ clue, cluePhase }) => {
   if (!clue) return null;
 
   const dispatch = useDispatch();
   const isLastClue = useSelector(isLastClueSelector);
+
+  let [timeLeft, setTimeLeft] = useState(delay);
+  let [int, setInt] = useState(null);
+
+  useEffect(() => {
+    if (int === null) {
+      const it = setInterval(() => {
+        setTimeLeft((state) => state - 1000);
+      }, 1000);
+
+      setInt(it);
+    }
+
+    return () => {
+      clearInterval(int);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      clearInterval(int);
+
+      handlePass();
+    }
+  }, [timeLeft]);
 
   const gamePhaseOnLastClue = () => {
     if (isLastClue) {
@@ -42,12 +71,14 @@ const Clue = ({ clue, cluePhase }) => {
 
   const handleClaimCorrect = () => {
     dispatch(setCluePhaseAnswer());
+    clearInterval(int);
   };
 
   const handlePass = () => {
     dispatch(setCluePhaseInit());
     dispatch(resetClue());
     dispatch(incrementPass());
+    clearInterval(int);
 
     gamePhaseOnLastClue();
   };
@@ -73,15 +104,17 @@ const Clue = ({ clue, cluePhase }) => {
   if (cluePhase === CLUE_PHASE.active) {
     content = (
       <div>
+        <Chip className={styles.timer}>{new Date(timeLeft).getSeconds()}</Chip>
         <Contain space="1" dir="xy">
           {clue.question}
+          <Space size="1" />
+          <Actions
+            primary="I know"
+            secondary="I pass"
+            onPrimary={handleClaimCorrect}
+            onSecondary={handlePass}
+          />
         </Contain>
-        <Actions
-          primary="I know"
-          secondary="I pass"
-          onPrimary={handleClaimCorrect}
-          onSecondary={handlePass}
-        />
       </div>
     );
   }
@@ -95,13 +128,14 @@ const Clue = ({ clue, cluePhase }) => {
           </Heading>
           <Divider />
           {clue.answer}
+          <Space size="1" />
+          <Actions
+            primary="Correct!"
+            secondary="Hmm..."
+            onPrimary={handleConfirmCorrect}
+            onSecondary={handleConfirmWrong}
+          />
         </Contain>
-        <Actions
-          primary="Correct!"
-          secondary="Hmm..."
-          onPrimary={handleConfirmCorrect}
-          onSecondary={handleConfirmWrong}
-        />
       </div>
     );
   }

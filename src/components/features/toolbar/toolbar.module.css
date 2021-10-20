@@ -1,5 +1,7 @@
-.score {
+.score.score {
   margin-top: -2.5rem;
+
+  border-radius: calc(2 * var(--radius-heavy));
 }
 
 .value {

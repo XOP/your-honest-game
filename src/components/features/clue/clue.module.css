@@ -1,12 +1,26 @@
-.root {
+.root.root {
   position: absolute;
   top: var(--space-one);
   left: var(--space-one);
   right: var(--space-one);
   bottom: var(--space-one);
 
+  padding-top: var(--space-four);
+
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
+}
+
+.timer.timer {
+  display: block;
+  position: absolute;
+  top: var(--space-one);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8ex;
+
+  font-weight: bold;
+  text-align: center;
 }
