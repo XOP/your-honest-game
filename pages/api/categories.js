@@ -2,7 +2,7 @@ import nc from "next-connect";
 import axios from "axios";
 import shuffle from "array-shuffle";
 
-import { mockData } from "../../src/redux/utils";
+// import { mockData } from "../../src/redux/utils";
 
 const catLimit = process.env.NEXT_PUBLIC_YHG_CATEGORY_LIMIT;
 
@@ -12,19 +12,19 @@ const handler = nc().get(async (req, res) => {
   ).slice(0, catLimit);
 
   try {
-    //   const dataPending = selectedIds.map((id) =>
-    //     axios
-    //       .get(process.env.NEXT_PUBLIC_YHG_CATEGORY_EP, { params: { id } })
-    //       .then((res) => res.data)
-    //   );
-
-    //   const data = await Promise.all(dataPending);
-
-    const data = await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve(mockData);
-      }, 500)
+    const dataPending = selectedIds.map((id) =>
+      axios
+        .get(process.env.NEXT_PUBLIC_YHG_CATEGORY_EP, { params: { id } })
+        .then((res) => res.data)
     );
+
+    const data = await Promise.all(dataPending);
+
+    // const data = await new Promise((resolve) =>
+    //   setTimeout(() => {
+    //     resolve(mockData);
+    //   }, 500)
+    // );
 
     res.json(transformData(data));
   } catch (err) {

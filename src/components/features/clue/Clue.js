@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 import Card from "choom/lib/components/card/Card";
 import Chip from "choom/lib/components/chip/Chip";
@@ -28,12 +29,22 @@ import {
 
 import { CLUE_PHASE } from "../../../redux/utils";
 
-import styles from "./clue.module.css";
+import audio, { SOUNDS } from "../../../utils/sound";
 
-const delay = 5 * 1000;
+import SettingsContext from "../../../context/settings";
+
+import styles from "./clue.module.css";
+import { routes } from "../../../routes";
+
+const delay = Number(process.env.NEXT_PUBLIC_YHG_CLUE_TIMER) * 1000;
 
 const Clue = ({ clue, cluePhase }) => {
   if (!clue) return null;
+
+  const router = useRouter();
+
+  const { sound } = useContext(SettingsContext);
+  const [soundOn] = sound;
 
   const dispatch = useDispatch();
   const isLastClue = useSelector(isLastClueSelector);
@@ -66,6 +77,7 @@ const Clue = ({ clue, cluePhase }) => {
   const gamePhaseOnLastClue = () => {
     if (isLastClue) {
       dispatch(setGamePhaseEnd());
+      router.push(routes.END);
     }
   };
 
@@ -89,6 +101,10 @@ const Clue = ({ clue, cluePhase }) => {
     dispatch(resetClue());
 
     gamePhaseOnLastClue();
+
+    if (soundOn) {
+      audio.play(SOUNDS.positive);
+    }
   };
 
   const handleConfirmWrong = () => {
@@ -97,6 +113,10 @@ const Clue = ({ clue, cluePhase }) => {
     dispatch(resetClue());
 
     gamePhaseOnLastClue();
+
+    if (soundOn) {
+      audio.play(SOUNDS.negative);
+    }
   };
 
   let content = null;

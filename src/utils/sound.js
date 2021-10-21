@@ -4,12 +4,16 @@ export const SOUNDS = {
   next: "next",
   negative: "negative",
   positive: "positive",
+  win: "win",
+  lose: "lose",
 };
 
 const sounds = new Map([
   [SOUNDS.next, { src: "/assets/audio/ding.mp3", howl: null }],
   [SOUNDS.negative, { src: "/assets/audio/buzz.mp3", howl: null }],
   [SOUNDS.positive, { src: "/assets/audio/cash.mp3", howl: null }],
+  [SOUNDS.win, { src: "/assets/audio/win.mp3", howl: null }],
+  [SOUNDS.lose, { src: "/assets/audio/lose.mp3", howl: null }],
 ]);
 
 class Audio {
@@ -30,7 +34,7 @@ class Audio {
     } else {
       howl = new Howl({
         src: src,
-        volume: 1,
+        volume: 0.5,
       });
 
       snd.howl = howl;

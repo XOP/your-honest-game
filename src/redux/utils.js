@@ -7,6 +7,7 @@ export const STATUS = {
 
 export const GAME_PHASE = {
   init: "init",
+  ready: "ready",
   round: "round",
   end: "end",
 };

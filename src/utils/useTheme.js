@@ -8,7 +8,7 @@ export const useTheme = (def, alt) => {
 
   const [storageTheme, storageSet] = useLocalstorage("YHG/theme", current);
 
-  if (storageTheme && current !== storageTheme) {
+  if (storageTheme !== null && current !== storageTheme) {
     current = storageTheme;
   }
 

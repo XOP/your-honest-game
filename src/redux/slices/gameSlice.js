@@ -30,6 +30,9 @@ export const gameSlice = createSlice({
     setGamePhaseEnd: (state) => {
       state.game_phase = GAME_PHASE.end;
     },
+    setGamePhaseReady: (state) => {
+      state.game_phase = GAME_PHASE.ready;
+    },
     setGamePhaseInit: (state) => {
       state.game_phase = GAME_PHASE.init;
       state.score = 0;
@@ -74,6 +77,7 @@ export const gameSlice = createSlice({
 export const {
   setGamePhaseRound,
   setGamePhaseEnd,
+  setGamePhaseReady,
   setGamePhaseInit,
   setCluePhaseActive,
   setCluePhaseAnswer,

@@ -18,6 +18,7 @@ import {
   setGamePhaseInit,
   gamePhaseSelector,
 } from "../../../redux/slices/gameSlice";
+
 import { GAME_PHASE } from "../../../redux/utils";
 
 import { routes } from "../../../routes";
@@ -38,8 +39,8 @@ const Toolbar = () => {
   const dispatch = useDispatch();
 
   const handleRestart = () => {
-    router.push(routes.START);
     dispatch(setGamePhaseInit());
+    router.push(routes.START);
   };
 
   const handleSettings = () => {

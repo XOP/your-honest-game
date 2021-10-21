@@ -6,24 +6,30 @@ import { Settings, Star, Loader } from "react-feather";
 
 import Button from "choom/lib/components/button/Button";
 import Heading from "choom/lib/components/heading/Heading";
+import Flex from "choom/lib/components/layout/Flex";
 import Flow from "choom/lib/components/layout/Flow";
 import Icon from "choom/lib/components/icon/Icon";
 
 import { statusSelector, fetchClues } from "../src/redux/slices/cluesSlice";
-import { setGamePhaseRound } from "../src/redux/slices/gameSlice";
+import {
+  gamePhaseSelector,
+  setGamePhaseReady,
+  setGamePhaseRound,
+} from "../src/redux/slices/gameSlice";
 
-import { STATUS } from "../src/redux/utils";
+import { GAME_PHASE, STATUS } from "../src/redux/utils";
 import { routes } from "../src/routes";
-import Flex from "choom/lib/components/layout/Flex";
 
 export default function Intro() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const gamePhase = useSelector(gamePhaseSelector);
   const status = useSelector(statusSelector);
 
   const handleGameStart = () => {
     dispatch(fetchClues());
+    dispatch(setGamePhaseReady());
   };
 
   const handleSettings = () => {
@@ -33,7 +39,7 @@ export default function Intro() {
   const isLoading = status === STATUS.loading;
 
   useEffect(() => {
-    if (status === STATUS.idle) {
+    if (gamePhase === GAME_PHASE.ready && status === STATUS.idle) {
       dispatch(setGamePhaseRound());
       router.push(routes.GAME);
     }

@@ -6,7 +6,7 @@ export const useSetting = (key, def) => {
 
   const [storageValue, storageSet] = useLocalstorage(`YHG/${key}`, current);
 
-  if (storageValue && current !== storageValue) {
+  if (storageValue !== null && current !== storageValue) {
     current = storageValue;
   }
 
