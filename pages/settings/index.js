@@ -9,6 +9,7 @@ import Stack from "choom/lib/components/layout/Stack";
 import { Volume, VolumeX, Sun, Moon, ZapOff, Zap } from "react-feather";
 
 import ThemeContext, { themeAlternative } from "../../src/assets/theme/theme";
+import SettingsContext from "../../src/context/settings";
 
 const Setting = dynamic(
   () =>
@@ -20,10 +21,9 @@ const Setting = dynamic(
 
 export default function Settings() {
   const [theme, toggleTheme] = useContext(ThemeContext);
-
-  const handleSoundToggle = () => {};
-
-  const handleVibrationToggle = () => {};
+  const { sound, vibration } = useContext(SettingsContext);
+  const [soundOn, toggleSound] = sound;
+  const [vibrationOn, toggleVibration] = vibration;
 
   return (
     <Flex space="2" dir="column">
@@ -36,8 +36,8 @@ export default function Settings() {
           <Setting
             iconStart={<VolumeX />}
             iconEnd={<Volume />}
-            onChange={handleSoundToggle}
-            on={false}
+            onChange={toggleSound}
+            on={soundOn}
           >
             Sound
           </Setting>
@@ -45,8 +45,8 @@ export default function Settings() {
           <Setting
             iconStart={<ZapOff />}
             iconEnd={<Zap />}
-            onChange={handleVibrationToggle}
-            on={false}
+            onChange={toggleVibration}
+            on={vibrationOn}
           >
             Vibration
           </Setting>

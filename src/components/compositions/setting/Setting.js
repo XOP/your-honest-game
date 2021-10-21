@@ -7,7 +7,13 @@ import Switch from "choom/lib/components/switch/Switch";
 
 import styles from "./setting.module.css";
 
-const Setting = ({ children: title, iconStart, iconEnd, on, onChange }) => {
+const Setting = ({
+  children: title,
+  iconStart,
+  iconEnd,
+  on,
+  onChange,
+}) => {
   return (
     <Media
       align="center"
