@@ -7,7 +7,7 @@ import Switch from "choom/lib/components/switch/Switch";
 
 import styles from "./setting.module.css";
 
-const Setting = ({ children: title, iconStart, iconEnd, onChange }) => {
+const Setting = ({ children: title, iconStart, iconEnd, on, onChange }) => {
   return (
     <Media
       align="center"
@@ -19,7 +19,7 @@ const Setting = ({ children: title, iconStart, iconEnd, onChange }) => {
           end={<Icon size="regular">{iconEnd}</Icon>}
         >
           <div className={styles.toggle}>
-            <Switch onChange={onChange} />
+            <Switch onChange={onChange} checked={on} />
           </div>
         </Media>
       }

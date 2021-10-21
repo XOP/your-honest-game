@@ -34,7 +34,13 @@
   --border-size-regular: 2px;
   --border-size-heavy: 4px;
 
-  --color-theme-temp: #e3ad0a;
-  --color-dark-temp: #3d3d3d;
-  --color-light-temp: #e7e7e7;
+  --color-theme-temp: #f0b504;
+  --color-dark-temp: #4e4e4e;
+  --color-light-temp: #f8f8f8;
+}
+
+:root[data-theme="dark"] {
+  --color-theme-temp: #d6a510;
+  --color-dark-temp: #1f1f1f;
+  --color-light-temp: #c5c5c5;
 }
