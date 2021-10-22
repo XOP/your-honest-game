@@ -36,7 +36,7 @@ yarn test
 
 ### Theming
 
-See [assets/theme/theme.css] for tweaking theme variables.
+See `assets/theme/theme.css` for tweaking theme variables.
 
 ## Main tools and services
 
