@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <title>Your Honest Game</title>
           <meta
             name="description"
             content="Pretend to play Jeopardy!-inspired game"

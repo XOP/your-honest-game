@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Script from "next/script";
 
 import { DollarSign, CheckCircle, Slash, FastForward } from "react-feather";
 
@@ -34,6 +35,8 @@ export default function Game() {
   const pass = useSelector(passSelector);
   const gamePhase = useSelector(gamePhaseSelector);
 
+  const partyRef = useRef();
+
   const router = useRouter();
 
   const { sound } = useContext(SettingsContext);
@@ -62,7 +65,7 @@ export default function Game() {
           <Heading level="4" as="h1" colorInherit>
             <small>This was...</small>
             <br />
-            your honest game!
+            <span ref={partyRef}>your honest game!</span>
           </Heading>
 
           <Divider mt="1.5" mb="1.5" />
@@ -83,6 +86,19 @@ export default function Game() {
           </Stack>
         </Flex>
       </Screen>
+      <Script
+        id="party-js"
+        src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"
+        onLoad={() => {
+          if (score > 0) {
+            party.settings.gravity = 500; 
+            party.confetti(partyRef.current, {
+              count: party.variation.range(50, 80),
+              size: party.variation.range(0.6, 0.8)
+            });
+          }
+        }}
+      />
     </Contain>
   );
 }

@@ -24,6 +24,7 @@ import {
 } from "../../src/redux/slices/gameSlice";
 
 import audio, { SOUNDS } from "../../src/utils/sound";
+import vibro, { PATTERN } from "../../src/utils/vibration";
 
 import SettingsContext from "../../src/context/settings";
 import { routes } from "../../src/routes";
@@ -35,8 +36,9 @@ export default function Game({ categories: mockCategories }) {
   const gamePhase = useSelector(gamePhaseSelector);
   const router = useRouter();
 
-  const { sound } = useContext(SettingsContext);
+  const { sound, vibration } = useContext(SettingsContext);
   const [soundOn] = sound;
+  const [vibroOn] = vibration;
 
   const dispatch = useDispatch();
 
@@ -46,6 +48,10 @@ export default function Game({ categories: mockCategories }) {
 
     if (soundOn) {
       audio.play(SOUNDS.next);
+    }
+
+    if (vibroOn) {
+      vibro.play(PATTERN.tap);
     }
   };
 

@@ -30,6 +30,7 @@ import {
 import { CLUE_PHASE } from "../../../redux/utils";
 
 import audio, { SOUNDS } from "../../../utils/sound";
+import vibro, { PATTERN } from "../../../utils/vibration";
 
 import SettingsContext from "../../../context/settings";
 
@@ -43,8 +44,9 @@ const Clue = ({ clue, cluePhase }) => {
 
   const router = useRouter();
 
-  const { sound } = useContext(SettingsContext);
+  const { sound, vibration } = useContext(SettingsContext);
   const [soundOn] = sound;
+  const [vibroOn] = vibration;
 
   const dispatch = useDispatch();
   const isLastClue = useSelector(isLastClueSelector);
@@ -81,9 +83,17 @@ const Clue = ({ clue, cluePhase }) => {
     }
   };
 
+  const hapticFeedback = () => {
+    if (vibroOn) {
+      vibro.play(PATTERN.tap);
+    }
+  }
+
   const handleClaimCorrect = () => {
     dispatch(setCluePhaseAnswer());
     clearInterval(int);
+
+    hapticFeedback();
   };
 
   const handlePass = () => {
@@ -92,6 +102,7 @@ const Clue = ({ clue, cluePhase }) => {
     dispatch(incrementPass());
     clearInterval(int);
 
+    hapticFeedback();
     gamePhaseOnLastClue();
   };
 
@@ -105,6 +116,10 @@ const Clue = ({ clue, cluePhase }) => {
     if (soundOn) {
       audio.play(SOUNDS.positive);
     }
+
+    if (vibroOn) {
+      vibro.play(PATTERN.positive);
+    }
   };
 
   const handleConfirmWrong = () => {
@@ -116,6 +131,10 @@ const Clue = ({ clue, cluePhase }) => {
 
     if (soundOn) {
       audio.play(SOUNDS.negative);
+    }
+
+    if (vibroOn) {
+      vibro.play(PATTERN.negative);
     }
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
+import Head from 'next/head'
 
 import { Page } from "../src/components/features/page/Page";
 import store from "../src/redux/configure";
@@ -32,6 +33,9 @@ const App = ({ Component, pageProps }) => {
           sound: [sound, toggleSound],
           vibration: [vibration, toggleVibration]
         }}>
+          <Head>
+            <title>Your Honest Game</title>
+          </Head>
           <Page>
             <Component {...pageProps} />
           </Page>

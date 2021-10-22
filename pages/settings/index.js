@@ -8,7 +8,7 @@ import Stack from "choom/lib/components/layout/Stack";
 
 import { Volume, VolumeX, Sun, Moon, ZapOff, Zap } from "react-feather";
 
-import ThemeContext, { themeAlternative } from "../../src/assets/theme/theme";
+import ThemeContext from "../../src/assets/theme/theme";
 import SettingsContext from "../../src/context/settings";
 
 const Setting = dynamic(
@@ -55,7 +55,7 @@ export default function Settings() {
             iconStart={<Sun />}
             iconEnd={<Moon />}
             onChange={toggleTheme}
-            on={theme === themeAlternative}
+            on={theme === 'dark'}
           >
             Light
           </Setting>

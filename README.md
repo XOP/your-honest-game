@@ -50,6 +50,7 @@ See [assets/theme/theme.css] for tweaking theme variables.
 
 - [react-feather](https://feathericons.com/)
 - [howler](https://howlerjs.com/)
+- [party.js](https://party.js.org/)
 ## Additional resources
 
 - [Free Sounds Library](https://www.freesoundslibrary.com/)
