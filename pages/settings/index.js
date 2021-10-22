@@ -11,6 +11,8 @@ import { Volume, VolumeX, Sun, Moon, ZapOff, Zap } from "react-feather";
 import ThemeContext from "../../src/assets/theme/theme";
 import SettingsContext from "../../src/context/settings";
 
+import vibro from "../../src/utils/vibration";
+
 const Setting = dynamic(
   () =>
     import("../../src/components/compositions/setting/Setting").then(
@@ -42,20 +44,22 @@ export default function Settings() {
             Sound
           </Setting>
 
-          <Setting
-            iconStart={<ZapOff />}
-            iconEnd={<Zap />}
-            onChange={toggleVibration}
-            on={vibrationOn}
-          >
-            Vibration
-          </Setting>
+          {vibro.supported && (
+            <Setting
+              iconStart={<ZapOff />}
+              iconEnd={<Zap />}
+              onChange={toggleVibration}
+              on={vibrationOn}
+            >
+              Vibration
+            </Setting>
+          )}
 
           <Setting
             iconStart={<Sun />}
             iconEnd={<Moon />}
             onChange={toggleTheme}
-            on={theme === 'dark'}
+            on={theme === "dark"}
           >
             Light
           </Setting>

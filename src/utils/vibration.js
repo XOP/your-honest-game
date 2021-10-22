@@ -21,8 +21,11 @@ class Vibro {
     this.#patterns = patterns;
   }
 
+  supported =
+    typeof window !== "undefined" && window?.navigator?.vibrate;
+
   play(name) {
-    if (typeof window !== 'undefined' && window?.navigator?.vibrate) {
+    if (this.supported) {
       const pattern = this.#patterns.get(name);
 
       window.navigator.vibrate(pattern);

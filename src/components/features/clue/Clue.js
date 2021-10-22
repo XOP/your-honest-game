@@ -7,7 +7,11 @@ import Chip from "choom/lib/components/chip/Chip";
 import Contain from "choom/lib/components/layout/Contain";
 import Divider from "choom/lib/components/divider/Divider";
 import Heading from "choom/lib/components/heading/Heading";
+import Icon from "choom/lib/components/icon/Icon";
+import Media from "choom/lib/components/layout/Media";
 import Space from "choom/lib/components/space/Space";
+
+import { Clock } from "react-feather";
 
 import { Actions } from "../../compositions/actions/Actions";
 
@@ -87,7 +91,7 @@ const Clue = ({ clue, cluePhase }) => {
     if (vibroOn) {
       vibro.play(PATTERN.tap);
     }
-  }
+  };
 
   const handleClaimCorrect = () => {
     dispatch(setCluePhaseAnswer());
@@ -143,7 +147,18 @@ const Clue = ({ clue, cluePhase }) => {
   if (cluePhase === CLUE_PHASE.active) {
     content = (
       <div>
-        <Chip className={styles.timer}>{new Date(timeLeft).getSeconds()}</Chip>
+        <Chip className={styles.timer}>
+          <Media
+            space='0.25'
+            start={
+              <Icon size="inherit">
+                <Clock />
+              </Icon>
+            }
+          >
+            {new Date(timeLeft).getSeconds()}
+          </Media>
+        </Chip>
         <Contain space="1" dir="xy">
           {clue.question}
           <Space size="1" />
