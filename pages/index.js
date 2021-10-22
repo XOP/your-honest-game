@@ -36,12 +36,12 @@ export default function Intro() {
     router.push(routes.SETTINGS);
   };
 
-  const isLoading = status === STATUS.loading;
+  const isLoading = status === STATUS.loading || gamePhase === GAME_PHASE.ready;
 
   useEffect(() => {
     if (gamePhase === GAME_PHASE.ready && status === STATUS.idle) {
-      dispatch(setGamePhaseRound());
       router.push(routes.GAME);
+      dispatch(setGamePhaseRound());
     }
   }, [status]);
 

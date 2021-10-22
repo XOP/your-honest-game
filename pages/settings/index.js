@@ -13,7 +13,7 @@ import SettingsContext from "../../src/context/settings";
 
 const Setting = dynamic(
   () =>
-    import("../../src/components/compositions/setting/setting").then(
+    import("../../src/components/compositions/setting/Setting").then(
       (mod) => mod.Setting
     ),
   { ssr: false }
