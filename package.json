@@ -2,6 +2,7 @@
   "name": "your-honest-game",
   "version": "0.0.1",
   "homepage": ".",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "next",
     "build": "next build",

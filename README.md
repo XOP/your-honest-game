@@ -1,9 +1,29 @@
 # Your Honest Game
 
+![Your Honest Game](https://res.cloudinary.com/wdybih/image/upload/v1634935746/favicons/android-chrome-192x192_jplwey.png)
+
 Pretend to play [Jeopardy!](https://en.wikipedia.org/wiki/Jeopardy!) on your own.
 
 **NB:**  
 This is a mere prototype application including several experiments with different technologies.  
+
+## Main tools and services
+
+- [NextJS](https://nextjs.org/)
+- [React-Redux](https://react-redux.js.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Choom](https://www.npmjs.com/package/choom)
+- [jService](https://jservice.io/)
+
+## Notable mentions
+
+- [react-feather](https://feathericons.com/)
+- [howler](https://howlerjs.com/)
+- [party.js](https://party.js.org/)
+## Additional resources
+
+- [Free Sounds Library](https://www.freesoundslibrary.com/)
+- [Google Fonts](https://fonts.google.com/)
 
 ## Local development
 
@@ -37,23 +57,4 @@ yarn test
 ### Theming
 
 See `assets/theme/theme.css` for tweaking theme variables.
-
-## Main tools and services
-
-- [NextJS](https://nextjs.org/)
-- [React-Redux](https://react-redux.js.org/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Choom](https://www.npmjs.com/package/choom)
-- [jService](https://jservice.io/)
-
-## Notable mentions
-
-- [react-feather](https://feathericons.com/)
-- [howler](https://howlerjs.com/)
-- [party.js](https://party.js.org/)
-## Additional resources
-
-- [Free Sounds Library](https://www.freesoundslibrary.com/)
-- [Google Fonts](https://fonts.google.com/)
-
 ## [LICENSE](LICENSE)
